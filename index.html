@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            cursor: none;
+        }
+        .cr {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        .ent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            background: #000;
+            transition: all 1s ease;
+        }
+        .ent.fo {
+            opacity: 0;
+            filter: blur(10px);
+            pointer-events: none;
+        }
+        .tw {
+            font-size: 2.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+        .tw:hover {
+            text-shadow: 0 0 30px rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+        .tw-txt {
+            border-right: 3px solid #fff;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { border-color: #fff; }
+            51%, 100% { border-color: transparent; }
+        }
+        .pp-c {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bc-c {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            z-index: 0;
+        }
+        .bc {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .pf {
+            opacity: 0;
+            filter: blur(10px);
+            transition: all 1s ease;
+            padding: 2rem;
+            height: 100vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+        .pf.fi {
+            opacity: 1;
+            filter: blur(0);
+        }
+        .hd {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+        .pp {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: block;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        .pp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        }
+        .nm {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .ttl {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        .nv {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .nv-itm {
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .nv-itm:hover, .nv-itm.act {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        .sec {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .sec.act {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sec h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .sec p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .prj {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        .prj:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        .prj h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        .a-inf {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="cr"></div>
+    <div class="ent" id="ent">
+        <div class="tw" onclick="entSite()">
+            <span class="tw-txt" id="tw-txt"></span>
+        </div>
+    </div>
+    <div class="pf" id="pf">
+        <div class="hd">
+            <div class="pp-c">
+                <div class="bc-c">
+                    <canvas class="bc" id="bc" width="300" height="300"></canvas>
+                </div>
+                <img src="pfp.png" alt="Profile Picture" class="pp" onerror="this.style.display='none'">
+            </div>
+            <h1 class="nm">usedandfine</h1>
+            <p class="ttl">scripter & smt</p>
+        </div>
+        <nav class="nv">
+            <a href="#" class="nv-itm act" onclick="shSec('abt')">About</a>
+            <a href="#" class="nv-itm" onclick="shSec('prjs')">Projects</a>
+            <a href="#" class="nv-itm" onclick="shSec('skls')">Languages</a>
+            <a href="#" class="nv-itm" onclick="shSec('cnt')">Social</a>
+        </nav>
+        <div class="sec act" id="abt">
+            <h2>Abt me!!</h2>
+            <p>Hey, im usedandfine!! I work on a few languages (Languages tab) i mainly make shit for fun yk.</p>
+            <p>Worked with catbypasser & usercreated.</p>
+            <p>Yeah, ion what project im doing next lmfao.</p>
+        </div>
+        <div class="sec" id="prjs">
+            <h2>Projects</h2>
+            <div class="prj">
+                <h3>Quint</h3>
+                <p>FUD C2 Server, built in Remote Code Execution</p>
+            </div>
+        </div>
+        <div class="sec" id="skls">
+            <h2>Langs</h2>
+            <p>Frontend: HTML5, CSS3, JavaScript</p>
+            <p>Backend: Node.js, Python, C#</p>
+            <p>Scripting: Lua, Luau</p>
+            <p>Design: UI/UX Design</p>
+        </div>
+        <div class="sec" id="cnt">
+            <h2>Socials</h2>
+            <p>Wanna contact me?</p>
+            <p>cord: usedandfine</p>
+            <p>yt: synflag</p>
+        </div>
+    </div>
+    <div class="a-inf" id="aInf" style="display: none;">
+        Now Playing: <span id="curSong">Loading...</span>
+    </div>
+    <audio id="aPlr" preload="none"></audio>
+    <script> 
+        const cr = document.querySelector('.cr');
+        document.addEventListener('mousemove', (e) => {
+            cr.style.left = e.clientX + 'px';
+            cr.style.top = e.clientY + 'px';
+        });
+        const txt = "→ click to enter ←";
+        const twEl = document.getElementById('tw-txt');
+        let i = 0;
+        function tw() {
+            if (i < txt.length) {
+                twEl.textContent += txt.charAt(i);
+                i++;
+                setTimeout(tw, 100);
+            }
+        }
+        const cnv = document.getElementById('bc');
+        const ctx = cnv.getContext('2d');
+        const cX = cnv.width / 2;
+        const cY = cnv.height / 2;
+        const bRad = 75;
+        const nSpk = 64;
+        const aPlr = document.getElementById('aPlr');
+        const aInf = document.getElementById('aInf');
+        const curSng = document.getElementById('curSong');
+        const pl = ['music/ENOTTI.mp3', 'music/New_Opp.mp3', 'music/Friday_Night.mp3', 'music/Gzz_Box.mp3'];
+        let curSngIdx = 0;
+        let aCtx, anl, dArr;
+        function initA() {
+            aCtx = new (window.AudioContext || window.webkitAudioContext)();
+            anl = aCtx.createAnalyser();
+            anl.fftSize = 2048;
+            anl.smoothingTimeConstant = 0.15;
+            const src = aCtx.createMediaElementSource(aPlr);
+            src.connect(anl);
+            anl.connect(aCtx.destination);
+            dArr = new Uint8Array(anl.frequencyBinCount);
+        }
+        function playSng() {
+            if (pl.length === 0) return;
+            if (curSngIdx === 0) {
+                for (let i = pl.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [pl[i], pl[j]] = [pl[j], pl[i]];
+                }
+            }
+            const sPth = pl[curSngIdx];
+            const sNm = sPth.split('/').pop().replace('.mp3', '');
+            aPlr.src = sPth;
+            aPlr.play().then(() => {
+                aInf.style.display = 'block';
+                curSng.textContent = sNm;
+            }).catch(err => {
+                console.log('Audio play failed:', err);
+                nxtSng();
+            });
+        }
+        function nxtSng() {
+            curSngIdx = (curSngIdx + 1) % pl.length;
+            playSng();
+        }
+        aPlr.addEventListener('ended', nxtSng);
+        function drwBC() {
+            if (!anl) {
+                ctx.clearRect(0, 0, cnv.width, cnv.height);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(cX, cY, bRad, 0, Math.PI * 2);
+                ctx.stroke();
+                requestAnimationFrame(drwBC);
+                return;
+            }
+            anl.getByteFrequencyData(dArr);
+            ctx.clearRect(0, 0, cnv.width, cnv.height);
+            const bRng = Math.floor(dArr.length * 0.25);
+            let bTot = 0;
+            for (let i = 0; i < bRng; i++) {
+                bTot += dArr[i];
+            }
+            const bAvg = bTot / bRng / 255;
+            const grd = ctx.createRadialGradient(cX, cY, bRad - 10, cX, cY, bRad + 60);
+            grd.addColorStop(0, `rgba(255, 255, 255, ${0.7 + bAvg * 0.3})`);
+            grd.addColorStop(0.5, `rgba(255, 255, 255, ${0.5 + bAvg * 0.3})`);
+            grd.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.beginPath();
+            ctx.strokeStyle = grd;
+            ctx.lineWidth = 2;
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+            ctx.shadowBlur = bAvg * 15;
+            let fPnt = true;
+            for (let i = 0; i <= nSpk; i++) {
+                const ang = (i / nSpk) * Math.PI * 2;
+                const fIdx = Math.floor((i / nSpk) * (dArr.length * 0.8));
+                const frq = dArr[fIdx] || 0;
+                const nFrq = frq / 255;
+                let sLen = nFrq * 45;
+                const dBst = (Math.sin(ang * 3) + 1) * 0.1;
+                sLen += dBst * frq / 255 * 12;
+                const bBst = bAvg * 25;
+                const tRad = bRad + sLen + (bBst * Math.pow(nFrq, 0.7));
+                const x = cX + Math.cos(ang) * tRad;
+                const y = cY + Math.sin(ang) * tRad;
+                if (fPnt) {
+                    ctx.moveTo(x, y);
+                    fPnt = false;
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.closePath();
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.5 + bAvg * 0.3})`;
+            ctx.lineWidth = 1;
+            ctx.shadowBlur = 0;
+            ctx.arc(cX, cY, bRad - 5, 0, Math.PI * 2);
+            ctx.stroke();
+            requestAnimationFrame(drwBC);
+        }
+        function entSite() {
+            const ent = document.getElementById('ent');
+            const pf = document.getElementById('pf');
+            ent.classList.add('fo');
+            setTimeout(() => {
+                ent.style.display = 'none';
+                pf.classList.add('fi');
+                if (!aCtx) {
+                    initA();
+                    playSng();
+                }
+                drwBC();
+            }, 1000);
+        }
+        function shSec(sNm) {
+            const secs = document.querySelectorAll('.sec');
+            const nvItms = document.querySelectorAll('.nv-itm');
+            secs.forEach(sec => sec.classList.remove('act'));
+            nvItms.forEach(itm => itm.classList.remove('act'));
+            document.getElementById(sNm).classList.add('act');
+            event.target.classList.add('act');
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            tw();
+            drwBC();
+        });
+        document.addEventListener('mouseenter', (e) => {
+            if (e.target.matches('.tw, .nv-itm, .pp')) {
+                cr.style.transform = 'scale(1.5)';
+            }
+        });
+        document.addEventListener('mouseleave', (e) => {
+            if (e.target.matches('.tw, .nv-itm, .pp')) {
+                cr.style.transform = 'scale(1)';
+            }
+        });
+    </script>
+</body>
+</html>
