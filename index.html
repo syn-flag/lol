@@ -17,6 +17,9 @@
             overflow: hidden;
             cursor: none;
         }
+        @media (max-width: 768px) {
+            body { cursor: auto; }
+        }
         .cr {
             position: fixed;
             width: 20px;
@@ -27,6 +30,9 @@
             z-index: 9999;
             transition: transform 0.1s ease;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        @media (max-width: 768px) {
+            .cr { display: none; }
         }
         .ent {
             position: fixed;
@@ -52,6 +58,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            padding: 0 1rem;
+        }
+        @media (max-width: 768px) {
+            .tw { font-size: 1.8rem; }
         }
         .tw:hover {
             text-shadow: 0 0 30px rgba(255, 255, 255, 1);
@@ -74,6 +84,9 @@
             align-items: center;
             justify-content: center;
         }
+        @media (max-width: 768px) {
+            .pp-c { width: 200px; height: 200px; }
+        }
         .bc-c {
             position: absolute;
             top: 50%;
@@ -82,6 +95,9 @@
             width: 300px;
             height: 300px;
             z-index: 0;
+        }
+        @media (max-width: 768px) {
+            .bc-c { width: 200px; height: 200px; }
         }
         .bc {
             width: 100%;
@@ -98,6 +114,9 @@
             position: relative;
             z-index: 1;
         }
+        @media (max-width: 768px) {
+            .pf { padding: 1rem; }
+        }
         .pf.fi {
             opacity: 1;
             filter: blur(0);
@@ -107,6 +126,9 @@
             padding: 2rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             margin-bottom: 2rem;
+        }
+        @media (max-width: 768px) {
+            .hd { padding: 1rem 0; margin-bottom: 1.5rem; }
         }
         .pp {
             width: 150px;
@@ -119,6 +141,9 @@
             position: relative;
             z-index: 2;
         }
+        @media (max-width: 768px) {
+            .pp { width: 100px; height: 100px; }
+        }
         .pp:hover {
             transform: scale(1.1);
             box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
@@ -128,16 +153,26 @@
             margin-bottom: 0.5rem;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
+        @media (max-width: 768px) {
+            .nm { font-size: 2rem; }
+        }
         .ttl {
             font-size: 1.2rem;
             opacity: 0.8;
             margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .ttl { font-size: 1rem; }
         }
         .nv {
             display: flex;
             justify-content: center;
             gap: 2rem;
             margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .nv { gap: 1rem; margin-bottom: 2rem; }
         }
         .nv-itm {
             padding: 0.5rem 1rem;
@@ -146,6 +181,9 @@
             color: #fff;
             transition: all 0.3s ease;
             cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .nv-itm { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
         }
         .nv-itm:hover, .nv-itm.act {
             background: rgba(255, 255, 255, 0.1);
@@ -170,6 +208,9 @@
             margin-bottom: 1rem;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
+        @media (max-width: 768px) {
+            .sec h2 { font-size: 1.5rem; }
+        }
         .sec p {
             margin-bottom: 1rem;
             opacity: 0.9;
@@ -180,6 +221,9 @@
             margin-bottom: 1rem;
             transition: all 0.3s ease;
         }
+        @media (max-width: 768px) {
+            .prj { padding: 1rem; }
+        }
         .prj:hover {
             border-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
@@ -187,6 +231,44 @@
         .prj h3 {
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
+        }
+        .inf-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            z-index: 100;
+            line-height: 1.4;
+        }
+        @media (max-width: 768px) {
+            .inf-box { 
+                top: 10px; 
+                right: 10px; 
+                font-size: 0.75rem; 
+                padding: 8px 12px;
+                min-width: 160px;
+            }
+        }
+        .inf-itm {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            opacity: 0.9;
+        }
+        .inf-itm:last-child {
+            margin-bottom: 0;
+        }
+        .inf-lbl {
+            opacity: 0.7;
+        }
+        .inf-val {
+            font-weight: bold;
+            color: #fff;
         }
         .a-inf {
             position: fixed;
@@ -197,6 +279,17 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 0.9rem;
             backdrop-filter: blur(10px);
+            max-width: 250px;
+            z-index: 100;
+        }
+        @media (max-width: 768px) {
+            .a-inf { 
+                bottom: 10px; 
+                left: 10px; 
+                font-size: 0.8rem; 
+                padding: 8px 16px;
+                max-width: 200px;
+            }
         }
         ::-webkit-scrollbar {
             width: 8px;
@@ -218,6 +311,28 @@
     <div class="ent" id="ent">
         <div class="tw" onclick="entSite()">
             <span class="tw-txt" id="tw-txt"></span>
+        </div>
+    </div>
+    <div class="inf-box" id="infBox" style="display: none;">
+        <div class="inf-itm">
+            <span class="inf-lbl">ver:</span>
+            <span class="inf-val">2.1</span>
+        </div>
+        <div class="inf-itm">
+            <span class="inf-lbl">device:</span>
+            <span class="inf-val" id="devType">desktop</span>
+        </div>
+        <div class="inf-itm">
+            <span class="inf-lbl">res:</span>
+            <span class="inf-val" id="scrRes">loading...</span>
+        </div>
+        <div class="inf-itm">
+            <span class="inf-lbl">song:</span>
+            <span class="inf-val" id="curSongInf">none</span>
+        </div>
+        <div class="inf-itm">
+            <span class="inf-lbl">time:</span>
+            <span class="inf-val" id="curTime">00:00</span>
         </div>
     </div>
     <div class="pf" id="pf">
@@ -270,10 +385,26 @@
     <audio id="aPlr" preload="none"></audio>
     <script> 
         const cr = document.querySelector('.cr');
-        document.addEventListener('mousemove', (e) => {
-            cr.style.left = e.clientX + 'px';
-            cr.style.top = e.clientY + 'px';
-        });
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) {
+            document.addEventListener('mousemove', (e) => {
+                cr.style.left = e.clientX + 'px';
+                cr.style.top = e.clientY + 'px';
+            });
+        }
+        function getDev() {
+            const w = window.innerWidth;
+            if (w <= 480) return 'mobile';
+            if (w <= 768) return 'tablet';
+            return 'desktop';
+        }
+        function updInf() {
+            document.getElementById('devType').textContent = getDev();
+            document.getElementById('scrRes').textContent = `${window.innerWidth}x${window.innerHeight}`;
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute: '2-digit'});
+            document.getElementById('curTime').textContent = time;
+        }
         const txt = "→ click to enter ←";
         const twEl = document.getElementById('tw-txt');
         let i = 0;
@@ -286,16 +417,32 @@
         }
         const cnv = document.getElementById('bc');
         const ctx = cnv.getContext('2d');
-        const cX = cnv.width / 2;
-        const cY = cnv.height / 2;
-        const bRad = 75;
+        let cX = cnv.width / 2;
+        let cY = cnv.height / 2;
+        let bRad = 75;
         const nSpk = 64;
         const aPlr = document.getElementById('aPlr');
         const aInf = document.getElementById('aInf');
         const curSng = document.getElementById('curSong');
+        const curSngInf = document.getElementById('curSongInf');
         const pl = ['music/ENOTTI.mp3', 'music/New_Opp.mp3', 'music/Friday_Night.mp3', 'music/Gzz_Box.mp3'];
         let curSngIdx = 0;
         let aCtx, anl, dArr;
+        function rsizeCnv() {
+            if (window.innerWidth <= 768) {
+                cnv.width = 200;
+                cnv.height = 200;
+                cX = 100;
+                cY = 100;
+                bRad = 50;
+            } else {
+                cnv.width = 300;
+                cnv.height = 300;
+                cX = 150;
+                cY = 150;
+                bRad = 75;
+            }
+        }
         function initA() {
             aCtx = new (window.AudioContext || window.webkitAudioContext)();
             anl = aCtx.createAnalyser();
@@ -320,6 +467,7 @@
             aPlr.play().then(() => {
                 aInf.style.display = 'block';
                 curSng.textContent = sNm;
+                curSngInf.textContent = sNm;
             }).catch(err => {
                 console.log('Audio play failed:', err);
                 nxtSng();
@@ -391,10 +539,12 @@
         function entSite() {
             const ent = document.getElementById('ent');
             const pf = document.getElementById('pf');
+            const infBox = document.getElementById('infBox');
             ent.classList.add('fo');
             setTimeout(() => {
                 ent.style.display = 'none';
                 pf.classList.add('fi');
+                infBox.style.display = 'block';
                 if (!aCtx) {
                     initA();
                     playSng();
@@ -412,18 +562,27 @@
         }
         document.addEventListener('DOMContentLoaded', () => {
             tw();
+            rsizeCnv();
             drwBC();
+            updInf();
+            setInterval(updInf, 1000);
         });
-        document.addEventListener('mouseenter', (e) => {
-            if (e.target.matches('.tw, .nv-itm, .pp')) {
-                cr.style.transform = 'scale(1.5)';
-            }
+        window.addEventListener('resize', () => {
+            rsizeCnv();
+            updInf();
         });
-        document.addEventListener('mouseleave', (e) => {
-            if (e.target.matches('.tw, .nv-itm, .pp')) {
-                cr.style.transform = 'scale(1)';
-            }
-        });
+        if (!isMobile) {
+            document.addEventListener('mouseenter', (e) => {
+                if (e.target.matches('.tw, .nv-itm, .pp')) {
+                    cr.style.transform = 'scale(1.5)';
+                }
+            });
+            document.addEventListener('mouseleave', (e) => {
+                if (e.target.matches('.tw, .nv-itm, .pp')) {
+                    cr.style.transform = 'scale(1)';
+                }
+            });
+        }
     </script>
 </body>
 </html>
