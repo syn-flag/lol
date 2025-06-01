@@ -440,6 +440,7 @@
     <script> 
         const cr = document.querySelector('.cr');
         const isMobile = window.innerWidth <= 768;
+        
         function formatViewCount(count) {
             if (count >= 1000000) {
                 return (count / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -451,13 +452,25 @@
         
         async function addView() {
             try {
-                await fetch('https://views.synplus.workers.dev/', {
+                const response = await fetch('https://views.synplus.workers.dev/', {
                     method: 'GET',
-                    mode: 'cors'
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'User-Agent': navigator.userAgent
+                    }
                 });
-                console.log('View added successfully');
+                
+                if (response.ok) {
+                    console.log('View added successfully');
+                    return true;
+                } else {
+                    console.log('Failed to add view:', response.status);
+                    return false;
+                }
             } catch (error) {
                 console.log('Error adding view:', error);
+                return false;
             }
         }
         
@@ -465,32 +478,38 @@
             try {
                 const response = await fetch('https://views.synplus.workers.dev/total', {
                     method: 'GET',
-                    mode: 'cors'
+                    mode: 'cors',
+                    cache: 'no-cache'
                 });
-                const responseText = await response.text();
                 
-                let viewCount = 0;
-                try {
-                    // Try to parse as JSON first
-                    const data = JSON.parse(responseText);
-                    viewCount = data.views || data.total || 0;
-                } catch {
-                    // If JSON parsing fails, treat as raw number
-                    viewCount = parseInt(responseText) || 0;
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
                 }
                 
+                const responseText = await response.text();
+                console.log('Raw response:', responseText);
+                
+                let viewCount = parseInt(responseText) || 0;
+                
                 document.getElementById('viewCount').textContent = formatViewCount(viewCount);
+                console.log('View count updated to:', viewCount);
+                
+                return viewCount;
             } catch (error) {
                 console.log('Error fetching views:', error);
-                document.getElementById('viewCount').textContent = '0';
+                document.getElementById('viewCount').textContent = 'error';
+                return 0;
             }
         }
         
-        // Initialize view counter
         async function initViewCounter() {
-            await addView();
-            await getTotalViews();
             document.getElementById('viewCounter').style.display = 'flex';
+            
+            await addView();
+            
+            setTimeout(async () => {
+                await getTotalViews();
+            }, 500);
         }
         
         if (!isMobile) {
@@ -499,12 +518,14 @@
                 cr.style.top = e.clientY + 'px';
             });
         }
+        
         function getDev() {
             const w = window.innerWidth;
             if (w <= 480) return 'mobile';
             if (w <= 768) return 'tablet';
             return 'desktop';
         }
+        
         function updInf() {
             document.getElementById('devType').textContent = getDev();
             document.getElementById('scrRes').textContent = `${window.innerWidth}x${window.innerHeight}`;
@@ -512,9 +533,11 @@
             const time = now.toLocaleTimeString('en-US', {hour12: false, hour: '2-digit', minute: '2-digit'});
             document.getElementById('curTime').textContent = time;
         }
+        
         const txt = "→ click to enter ←";
         const twEl = document.getElementById('tw-txt');
         let i = 0;
+        
         function tw() {
             if (i < txt.length) {
                 twEl.textContent += txt.charAt(i);
@@ -522,6 +545,7 @@
                 setTimeout(tw, 100);
             }
         }
+        
         const cnv = document.getElementById('bc');
         const ctx = cnv.getContext('2d');
         let cX = cnv.width / 2;
@@ -535,6 +559,7 @@
         const pl = ['music/ENOTTI.mp3', 'music/New_Opp.mp3', 'music/Friday_Night.mp3', 'music/Gzz_Box.mp3'];
         let curSngIdx = 0;
         let aCtx, anl, dArr;
+        
         function rsizeCnv() {
             if (window.innerWidth <= 768) {
                 cnv.width = 200;
@@ -550,6 +575,7 @@
                 bRad = 75;
             }
         }
+        
         function initA() {
             aCtx = new (window.AudioContext || window.webkitAudioContext)();
             anl = aCtx.createAnalyser();
@@ -560,6 +586,7 @@
             anl.connect(aCtx.destination);
             dArr = new Uint8Array(anl.frequencyBinCount);
         }
+        
         function playSng() {
             if (pl.length === 0) return;
             if (curSngIdx === 0) {
@@ -580,11 +607,14 @@
                 nxtSng();
             });
         }
+        
         function nxtSng() {
             curSngIdx = (curSngIdx + 1) % pl.length;
             playSng();
         }
+        
         aPlr.addEventListener('ended', nxtSng);
+        
         function drwBC() {
             if (!anl) {
                 ctx.clearRect(0, 0, cnv.width, cnv.height);
