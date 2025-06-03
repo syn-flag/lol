@@ -170,6 +170,13 @@
             gap: 2rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.3s;
+        }
+        .nv.vis {
+            opacity: 1;
+            transform: translateY(0);
         }
         @media (max-width: 768px) {
             .nv { gap: 1rem; margin-bottom: 2rem; }
@@ -181,6 +188,12 @@
             color: #fff;
             transition: all 0.3s ease;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        .nv-itm.vis {
+            opacity: 1;
+            transform: translateY(0);
         }
         @media (max-width: 768px) {
             .nv-itm { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
@@ -194,14 +207,14 @@
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
         }
         .sec.act {
             display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            opacity: 1;
+            transform: translateY(0);
         }
         .sec h2 {
             font-size: 2rem;
@@ -220,6 +233,12 @@
             padding: 1.5rem;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .prj.vis {
+            opacity: 1;
+            transform: translateY(0);
         }
         @media (max-width: 768px) {
             .prj { padding: 1rem; }
@@ -244,6 +263,13 @@
             min-width: 200px;
             z-index: 100;
             line-height: 1.4;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease 0.2s;
+        }
+        .inf-box.vis {
+            opacity: 1;
+            transform: translateY(0);
         }
         @media (max-width: 768px) {
             .inf-box { 
@@ -270,6 +296,84 @@
             font-weight: bold;
             color: #fff;
         }
+        .music-controls {
+            position: fixed;
+            top: 160px;
+            right: 20px;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+            z-index: 100;
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease 0.4s;
+        }
+        .music-controls.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 768px) {
+            .music-controls {
+                top: 140px;
+                right: 10px;
+                font-size: 0.75rem;
+                padding: 8px 12px;
+                min-width: 160px;
+            }
+        }
+        .music-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .music-row:last-child {
+            margin-bottom: 0;
+        }
+        .music-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .music-select {
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+        }
+        .vol-slider {
+            flex-grow: 1;
+            -webkit-appearance: none;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+        .vol-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+        }
         .view-counter {
             position: fixed;
             top: 20px;
@@ -283,6 +387,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.5s ease 0.1s;
+        }
+        .view-counter.vis {
+            opacity: 1;
+            transform: translateY(0);
         }
         @media (max-width: 768px) {
             .view-counter { 
@@ -331,6 +442,13 @@
             backdrop-filter: blur(10px);
             max-width: 250px;
             z-index: 100;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease 0.5s;
+        }
+        .a-inf.vis {
+            opacity: 1;
+            transform: translateX(0);
         }
         @media (max-width: 768px) {
             .a-inf { 
@@ -363,14 +481,14 @@
             <span class="tw-txt" id="tw-txt"></span>
         </div>
     </div>
-    <div class="view-counter" id="viewCounter" style="display: none;">
+    <div class="view-counter" id="viewCounter">
         <div class="eye-icon"></div>
         <span class="view-count" id="viewCount">loading...</span>
     </div>
-    <div class="inf-box" id="infBox" style="display: none;">
+    <div class="inf-box" id="infBox">
         <div class="inf-itm">
             <span class="inf-lbl">ver:</span>
-            <span class="inf-val">2.3</span>
+            <span class="inf-val">2.4</span>
         </div>
         <div class="inf-itm">
             <span class="inf-lbl">device:</span>
@@ -389,6 +507,19 @@
             <span class="inf-val" id="curTime">00:00</span>
         </div>
     </div>
+    <div class="music-controls" id="musicControls">
+        <div class="music-row">
+            <select class="music-select" id="musicSelect"></select>
+        </div>
+        <div class="music-row">
+            <button class="music-btn" id="prevBtn">⏮</button>
+            <button class="music-btn" id="playBtn">⏯</button>
+            <button class="music-btn" id="nextBtn">⏭</button>
+        </div>
+        <div class="music-row">
+            <input type="range" min="0" max="1" step="0.01" value="0.5" class="vol-slider" id="volSlider">
+        </div>
+    </div>
     <div class="pf" id="pf">
         <div class="hd">
             <div class="pp-c">
@@ -400,7 +531,7 @@
             <h1 class="nm">usedandfine</h1>
             <p class="ttl">scripter & smt</p>
         </div>
-        <nav class="nv">
+        <nav class="nv" id="nav">
             <a href="#" class="nv-itm act" onclick="shSec('abt')">About</a>
             <a href="#" class="nv-itm" onclick="shSec('prjs')">Projects</a>
             <a href="#" class="nv-itm" onclick="shSec('skls')">Languages</a>
@@ -433,7 +564,7 @@
             <p>yt: synflag</p>
         </div>
     </div>
-    <div class="a-inf" id="aInf" style="display: none;">
+    <div class="a-inf" id="aInf">
         Now Playing: <span id="curSong">Loading...</span>
     </div>
     <audio id="aPlr" preload="none"></audio>
@@ -503,10 +634,7 @@
         }
         
         async function initViewCounter() {
-            document.getElementById('viewCounter').style.display = 'flex';
-            
             await addView();
-            
             setTimeout(async () => {
                 await getTotalViews();
             }, 500);
@@ -556,9 +684,29 @@
         const aInf = document.getElementById('aInf');
         const curSng = document.getElementById('curSong');
         const curSngInf = document.getElementById('curSongInf');
-        const pl = ['music/ENOTTI.mp3', 'music/New_Opp.mp3', 'music/Friday_Night.mp3', 'music/Gzz_Box.mp3', 'music/brutality.mp3', 'music/The_Purge.mp3'];
+        const pl = [
+            { name: 'ENOTTI', path: 'music/ENOTTI.mp3' },
+            { name: 'New Opp', path: 'music/New_Opp.mp3' },
+            { name: 'Friday Night', path: 'music/Friday_Night.mp3' },
+            { name: 'Gzz Box', path: 'music/Gzz_Box.mp3' },
+            { name: 'Brutality', path: 'music/brutality.mp3' },
+            { name: 'The Purge', path: 'music/The_Purge.mp3' }
+        ];
         let curSngIdx = 0;
         let aCtx, anl, dArr;
+        let isPlaying = false;
+        
+        function populateMusicSelect() {
+            const select = document.getElementById('musicSelect');
+            select.innerHTML = '';
+            pl.forEach((song, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = song.name;
+                select.appendChild(option);
+            });
+            select.value = curSngIdx;
+        }
         
         function rsizeCnv() {
             if (window.innerWidth <= 768) {
@@ -585,27 +733,54 @@
             src.connect(anl);
             anl.connect(aCtx.destination);
             dArr = new Uint8Array(anl.frequencyBinCount);
+            
+            document.getElementById('volSlider').addEventListener('input', (e) => {
+                aPlr.volume = e.target.value;
+            });
+            
+            document.getElementById('playBtn').addEventListener('click', togglePlay);
+            document.getElementById('prevBtn').addEventListener('click', prevSng);
+            document.getElementById('nextBtn').addEventListener('click', nxtSng);
+            document.getElementById('musicSelect').addEventListener('change', (e) => {
+                curSngIdx = parseInt(e.target.value);
+                playSng();
+            });
+            
+            aPlr.volume = 0.5;
+            populateMusicSelect();
+        }
+        
+        function togglePlay() {
+            if (isPlaying) {
+                aPlr.pause();
+                document.getElementById('playBtn').textContent = '⏯';
+            } else {
+                aPlr.play();
+                document.getElementById('playBtn').textContent = '⏸';
+            }
+            isPlaying = !isPlaying;
         }
         
         function playSng() {
             if (pl.length === 0) return;
-            if (curSngIdx === 0) {
-                for (let i = pl.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [pl[i], pl[j]] = [pl[j], pl[i]];
-                }
-            }
-            const sPth = pl[curSngIdx];
-            const sNm = sPth.split('/').pop().replace('.mp3', '');
-            aPlr.src = sPth;
+            const song = pl[curSngIdx];
+            aPlr.src = song.path;
             aPlr.play().then(() => {
-                aInf.style.display = 'block';
-                curSng.textContent = sNm;
-                curSngInf.textContent = sNm;
+                aInf.classList.add('vis');
+                curSng.textContent = song.name;
+                curSngInf.textContent = song.name;
+                document.getElementById('musicSelect').value = curSngIdx;
+                isPlaying = true;
+                document.getElementById('playBtn').textContent = '⏸';
             }).catch(err => {
                 console.log('Audio play failed:', err);
                 nxtSng();
             });
+        }
+        
+        function prevSng() {
+            curSngIdx = (curSngIdx - 1 + pl.length) % pl.length;
+            playSng();
         }
         
         function nxtSng() {
@@ -673,20 +848,42 @@
             ctx.stroke();
             requestAnimationFrame(drwBC);
         }
+        
+        function animateElements() {
+            document.getElementById('viewCounter').classList.add('vis');
+            document.getElementById('infBox').classList.add('vis');
+            document.getElementById('musicControls').classList.add('vis');
+            document.getElementById('nav').classList.add('vis');
+            
+            const navItems = document.querySelectorAll('.nv-itm');
+            navItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('vis');
+                }, 100 * index);
+            });
+            
+            const projects = document.querySelectorAll('.prj');
+            projects.forEach((project, index) => {
+                setTimeout(() => {
+                    project.classList.add('vis');
+                }, 200 * index);
+            });
+        }
+        
         function entSite() {
             const ent = document.getElementById('ent');
             const pf = document.getElementById('pf');
-            const infBox = document.getElementById('infBox');
             ent.classList.add('fo');
             setTimeout(() => {
                 ent.style.display = 'none';
                 pf.classList.add('fi');
-                infBox.style.display = 'block';
                 if (!aCtx) {
                     initA();
                     playSng();
                 }
                 drwBC();
+                animateElements();
+                initViewCounter();
             }, 1000);
         }
         function shSec(sNm) {
@@ -694,7 +891,10 @@
             const nvItms = document.querySelectorAll('.nv-itm');
             secs.forEach(sec => sec.classList.remove('act'));
             nvItms.forEach(itm => itm.classList.remove('act'));
-            document.getElementById(sNm).classList.add('act');
+            const newSec = document.getElementById(sNm);
+            if (newSec) {
+                newSec.classList.add('act');
+            }
             event.target.classList.add('act');
         }
         document.addEventListener('DOMContentLoaded', () => {
@@ -703,20 +903,21 @@
             drwBC();
             updInf();
             setInterval(updInf, 1000);
-            initViewCounter();
         });
+        
         window.addEventListener('resize', () => {
             rsizeCnv();
             updInf();
         });
+        
         if (!isMobile) {
             document.addEventListener('mouseenter', (e) => {
-                if (e.target.matches('.tw, .nv-itm, .pp')) {
+                if (e.target.matches('.tw, .nv-itm, .pp, .music-btn')) {
                     cr.style.transform = 'scale(1.5)';
                 }
             });
             document.addEventListener('mouseleave', (e) => {
-                if (e.target.matches('.tw, .nv-itm, .pp')) {
+                if (e.target.matches('.tw, .nv-itm, .pp, .music-btn')) {
                     cr.style.transform = 'scale(1)';
                 }
             });
